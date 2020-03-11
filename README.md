@@ -2,29 +2,39 @@
 
 Project to generate Identicon from token or string.
 
-## Installation
+### Install Dependencies
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `identicon` to your list of dependencies in `mix.exs`:
+Install dependencies from `mix`
 
-```elixir
-def deps do
-  [
-    {:identicon, "~> 0.1.0"}
-  ]
-end
+```bash
+mix deps.get
 ```
 
-## Test
+> if this not work
+
+```bash
+mix deps.compile
+```
+
+### Test
 
 ```bash
 $ mix test
 ```
 
-## Generate Docs
+### Generate Docs
 
 ```bash
 $ mix docs
 ```
 
+### Create your images
+
+```elixir
+Identicon.main("elixir")
+```
+
+> result is on the same folder
+
+![alt="Elixir"](elixir.png)
 
