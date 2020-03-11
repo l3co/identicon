@@ -6,13 +6,12 @@ defmodule Identicon do
   def main(input) do
     input
     |> hash_input
+    |> pick_color
   end
 
   @spec pick_color(Identicon.Image.t()) :: Identicon.Image.t()
-  def pick_color(image) do
-    %Identicon.Image{hex: hex_hash} = image
-    [r, g, b | _tail] = hex_hash
-    %Identicon.Image{hex: [r, g, b]}
+  def pick_color(%Identicon.Image{hex: [r, g, b | _tail]} = image) do
+    %Identicon.Image{image | color: {r, g, b}}
   end
 
   @doc """

@@ -13,7 +13,6 @@ defmodule IdenticonTest do
     new_image = Identicon.pick_color(image)
 
     refute image == new_image
-
-    assert length(new_image.hex) == 3
+    assert tuple_size(new_image.color) == 3
   end
 end
