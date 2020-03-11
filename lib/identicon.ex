@@ -8,16 +8,26 @@ defmodule Identicon do
     |> hash_input
   end
 
+  @spec pick_color(Identicon.Image.t()) :: Identicon.Image.t()
+  def pick_color(image) do
+    %Identicon.Image{hex: hex_hash} = image
+    [r, g, b | _tail] = hex_hash
+    %Identicon.Image{hex: [r, g, b]}
+  end
+
   @doc """
   hash_input generate a list of binary based on md5 hash from `input` string
-
+  returns a `Identicon.Image`
   ## Example
 
       iex> Identicon.hash_input("banana")
-      [114, 179, 2, 191, 41, 122, 34, 138, 117, 115, 1, 35, 239, 239, 124, 65]
+      %Identicon.Image{hex: [114, 179, 2, 191, 41, 122, 34, 138, 117, 115, 1, 35, 239, 239, 124, 65]}
   """
   def hash_input(input) do
-    :crypto.hash(:md5, input)
-    |> :binary.bin_to_list()
+    hex =
+      :crypto.hash(:md5, input)
+      |> :binary.bin_to_list()
+
+    %Identicon.Image{hex: hex}
   end
 end
